@@ -14,6 +14,7 @@ import {
 } from './members.schema.js'
 import { MembersService, getOptions } from './members.class.js'
 import { membersPath, membersMethods } from './members.shared.js'
+import { searchMember } from '../../../../hooks/searchMember.js'
 
 export * from './members.class.js'
 export * from './members.schema.js'
@@ -37,8 +38,10 @@ export const members = (app) => {
       ]
     },
     before: {
-      all: [schemaHooks.validateQuery(membersQueryValidator), schemaHooks.resolveQuery(membersQueryResolver)],
-      find: [],
+      all: [
+        // schemaHooks.validateQuery(membersQueryValidator), schemaHooks.resolveQuery(membersQueryResolver)
+      ],
+      find: [searchMember],
       get: [],
       create: [schemaHooks.validateData(membersDataValidator), schemaHooks.resolveData(membersDataResolver)],
       patch: [schemaHooks.validateData(membersPatchValidator), schemaHooks.resolveData(membersPatchResolver)],

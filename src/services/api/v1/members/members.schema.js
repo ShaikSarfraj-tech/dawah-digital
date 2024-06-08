@@ -9,7 +9,9 @@ export const membersSchema = Type.Object(
   {
     _id: ObjectIdSchema(),
     name: Type.String(),
-    lastMet: Type.String({ format: 'date' })
+    lastMet: Type.String({ format: 'date' }),
+    createdAt: Type.String({ format: 'date' }),
+    updatedAt: Type.String({ format: 'date' }),
   },
   { $id: 'Members', additionalProperties: false }
 )
