@@ -23,7 +23,8 @@ export const membersExternalResolver = resolve({})
 
 // Schema for creating new entries
 export const membersDataSchema = Type.Pick(membersSchema, ['name', 'lastMet', 'area'], {
-  $id: 'MembersData'
+  $id: 'MembersData',
+  additionalProperties: true
 })
 export const membersDataValidator = getValidator(membersDataSchema, dataValidator)
 export const membersDataResolver = resolve({})
@@ -36,7 +37,14 @@ export const membersPatchValidator = getValidator(membersPatchSchema, dataValida
 export const membersPatchResolver = resolve({})
 
 // Schema for allowed query properties
-export const membersQueryProperties = Type.Pick(membersSchema, ['_id', 'name', 'lastMet', 'area'])
+export const membersQueryProperties = Type.Pick(membersSchema, [
+  '_id',
+  'name',
+  'lastMet',
+  'area',
+  'createdAt',
+  'updatedAt'
+])
 export const membersQuerySchema = Type.Intersect(
   [
     querySyntax(membersQueryProperties),
