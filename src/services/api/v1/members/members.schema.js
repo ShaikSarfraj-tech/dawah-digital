@@ -28,7 +28,14 @@ export const membersDataSchema = Type.Pick(membersSchema, ['name', 'lastMet', 'a
   additionalProperties: true
 })
 export const membersDataValidator = getValidator(membersDataSchema, dataValidator)
-export const membersDataResolver = resolve({})
+export const membersDataResolver = resolve({
+  createdAt: async () => {
+    return Date.now()
+  },
+  updatedAt: async () => {
+    return Date.now()
+  }
+})
 
 // Schema for updating existing entries
 export const membersPatchSchema = Type.Partial(membersSchema, {
