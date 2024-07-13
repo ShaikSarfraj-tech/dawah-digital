@@ -11,6 +11,7 @@ export const membersSchema = Type.Object(
     name: Type.String(),
     lastMet: Type.String({ format: 'date' }),
     area: Type.String(),
+    location: Type.String(),
     createdAt: Type.String({ format: 'date' }),
     updatedAt: Type.String({ format: 'date' })
   },
